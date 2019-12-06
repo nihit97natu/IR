@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin - Start Bootstrap Template</title>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+
+  <!--My changes-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--end-->
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  
+
+
+      <!-- My changes-->
+      <div id="dashboard_div">
+          <input id="searchbar" onkeyup="query_using_keyword()" type="text"
+          name="search" placeholder="Enter Keyword">
+
+          <p id="query_keyword"></p>
+        
+      <!--end-->
+      
+      {% extends "base.html" %} {% block title %}Flask Solr{% endblock %} {% block body %}
+
+      <div class="container">
+          <h1>Search</h1>
+          <p>Request: {{ req }}</p>
+          <br>
+          <p>Current URL: {{ local_url_selected }}</p>
+          <br>
+          <p>Search, you searched for: {{ rv }}</p>
+          <form action="/search_str" method="POST">
+              <div class="form-group">
+                  <div class="col-xs-3">
+                      <input class="form-control" id="inputdefault" type="text" name="user_input" placeholder="Enter Keyword" />
+
+                      <br>
+                      <!-- post btn -->
+                      <input type="submit" name="action" value="Search" class="btn btn-primary" />
+                      <br>
+                      <br>
+                  </div>
+              </div>
+
+              <br>
+          </form>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <div class="container">
+
+              {% for r in data %}
+              <p> {{ r['full_text'] }}</p>
+              {% endfor %}
+              <br>
+
+          </div>
+
+      </div>
+
+
+      <!-- debug
+      <p>selectd {{ local_url_selected }}</p>
+      {{ local_urls }}
+      -->
+      {% endblock %}
+
+
+      
+              
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/customer.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/order.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/message.js') }}"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>POI name</th>
+        <th>Tweet Date</th>
+        <th>Tweet</th>
+        <th>News Article</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for res in data %}
+      <tr>
+        <td>{{res.poi_name.0}}</td>
+        <td>{{res.created_at.0}}</td>
+        <td>{% if not res.full_text %}
+            {{res.text.0}}
+             {% endif %}
+
+            {% if res.full_text %}
+            {{res.full_text.0}}
+            {% endif %}
+        </td>
+        <td>{% if not res.newsarticle %}
+            {No articles found}
+             {% endif %}
+
+            {% if res.newsarticle %}
+            {{res.newsarticle.0}}
+            {% endif %}}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

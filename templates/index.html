@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Flask Solr{% endblock %} {% block body %}
+
+<div class="container">
+    <h1>Index</h1>
+    <p>Request: {{ req }}</p>
+    <br>
+    <p>Current URL: {{ local_url_selected }}</p>
+    <br>
+    <p>Add URL's app/index.json</p>
+    <form action="/" method="POST">
+        <div class="form-group">
+            <div class="col-xs-6">
+                <label for="sel1">Select and set url:</label>
+                <select class="form-control" name="SelectUrl" id="sel1">
+
+                    {% for x in local_urls %}
+                    <option value="{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                </select>
+
+                <br>
+                <!-- post btn -->
+                <input type="submit" name="action" value="Set" class="btn btn-primary" />
+                <br>
+                <br>
+            </div>
+        </div>
+</div>
+
+</form>
+</div>
+<!-- debug
+<p>selectd {{ local_url_selected }}</p>
+{{ local_urls }} -->
+{% endblock %}
